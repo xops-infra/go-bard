@@ -13,8 +13,8 @@ type Client struct {
 	requestBuilder requestBuilder
 }
 
-func NewClient(authToken string) *Client {
-	config := DefaultConfig(authToken)
+func NewClient(authToken, bardApi string) *Client {
+	config := DefaultConfig(authToken, bardApi)
 	return NewClientWithConfig(config)
 }
 
@@ -27,13 +27,13 @@ func NewClientWithConfig(config ClientConfig) *Client {
 
 func (c *Client) sendRequest(req *http.Request, v any) error {
 	req.Header.Set("Accept", "application/json; charset=utf-8")
-	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.authToken))
+	req.Header.Set("Authorization", c.config.authToken)
 
 	// Check whether Content-Type is already set, Upload Files API requires
 	// Content-Type == multipart/form-data
 	contentType := req.Header.Get("Content-Type")
 	if contentType == "" {
-		req.Header.Set("Content-Type", "text/plain")
+		req.Header.Set("Content-Type", "application/json")
 	}
 
 	res, err := c.config.HTTPClient.Do(req)

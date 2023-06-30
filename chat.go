@@ -6,11 +6,24 @@ import (
 )
 
 type ChatRequest struct {
-	Input string `json:"input"`
+	Message string `json:"message"`
+}
+
+type UnitChoices struct {
+	ID      string `json:"id"`
+	Content string `json:"content"`
 }
 
 type ChatResponse struct {
-	Output string `json:"output"`
+	Content           string        `json:"content"`
+	ConversationID    string        `json:"conversation_id"`
+	ResponseID        string        `json:"response_id"`
+	FactualityQueries string        `json:"factuality_queries"`
+	TextQuery         []any         `json:"text_query"`
+	Choices           []UnitChoices `json:"choices"`
+	Links             []any         `json:"links"`
+	Images            []any         `json:"images"`
+	Code              string        `json:"code"`
 }
 
 func (c *Client) CreateChat(

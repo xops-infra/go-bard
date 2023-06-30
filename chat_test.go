@@ -6,10 +6,10 @@ import (
 )
 
 func TestCreateChat(t *testing.T) {
-	var client = NewClient("xx")
+	var client = NewClient("", "http://127.0.0.1:5000")
 
 	var req = ChatRequest{
-		Input: "Why did not I show up at my parents wedding?",
+		Message: "Why did not I show up at my parents wedding?",
 	}
 	chat, err := client.CreateChat(context.Background(), &req)
 	if err != nil {

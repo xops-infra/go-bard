@@ -17,10 +17,10 @@ type ClientConfig struct {
 	HTTPClient *http.Client
 }
 
-func DefaultConfig(authToken string) ClientConfig {
+func DefaultConfig(authToken, bardApi string) ClientConfig {
 	return ClientConfig{
 		authToken: authToken,
-		BaseURL:   bardAPIURLv1,
+		BaseURL:   bardApi,
 
 		HTTPClient: &http.Client{},
 	}
