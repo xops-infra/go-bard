@@ -11,7 +11,7 @@ type ChatRequest struct {
 
 type UnitChoices struct {
 	ID      string `json:"id"`
-	Content string `json:"content"`
+	Content any    `json:"content"`
 }
 
 type ChatResponse struct {
